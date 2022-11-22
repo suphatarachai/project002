@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+
+type AppMyState = {
+   message: String;
+};
+
+class App extends React.Component<{}, AppState> {
+  state: AppState = {
+    
+    message: 'Default message',
+  };
+
+  componentDidMount() { 
+    fetch('http://localhost:3001/courses')
+      .then(res => res.json())
+      .then(obj => {
+        this.setState({message: obj.message});
+      });
+    }
+
+  render() {
+    return (
+      <div>
+        {this.state.message}
+      </div>
+    );
+  }
+}
 export default App;
