@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
+
 import './App.css';
+import CoursesItem from './courseItem';
+import { Course } from './interfaces';
 
 
 const App = () => {
-  const [courses, setCourses] = useState ([]);
+  const [courses, setCourses] = useState<Course[]> ([]);
 
 
   useEffect (() => {
@@ -19,7 +22,7 @@ const App = () => {
     <div className="App">
         <ul>
             {courses.map(item => (
-              <li key={item.id}>{item.number}-{item.title}</li>
+              <CoursesItem key={item.id} course={item}/>
             ))}
         </ul>
     </div>
@@ -64,5 +67,5 @@ const App = () => {
 //       </div>
 //     );
 //   }
-}
+// }
 export default App;
