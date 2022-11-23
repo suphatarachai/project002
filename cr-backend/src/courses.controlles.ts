@@ -1,31 +1,17 @@
 import { Controller, Get } from '@nestjs/common';
+import { CoursesService } from './courses.service';
+
+// import { Courses } from './interfaces/courses.interdaces';
 
 
 @Controller('courses')
 export class CoursesController {
-
+  constructor(private coursesService: CoursesService) {}
   @Get()
-  findAlll(): any {
-    return [
-        { 
-          id : '100',
-          number : '100011',
-          title : 'map'
-        },
-
-      { 
-       id : '101',
-        number : '200011',
-        title : 'thai'
-     },
-
-    { 
-      id : '102',
-      number : '300011',
-      title : 'lap'
-    }
+    async findAlll(): Promise<Courses[]> {
+    return this.coursesService.findAll();
+       
   
-  ];
   
   
   
