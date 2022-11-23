@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 
-// import { Courses } from './interfaces/courses.interdaces';
+import { Courses } from './interfaces/courses.interdaces';
 
 
 @Controller('courses')

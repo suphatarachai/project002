@@ -41,6 +41,9 @@ lerna-debug.log*
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
 /cr-frontend/node_modules
 /cr-frontend/.pnp
 .pnp.js

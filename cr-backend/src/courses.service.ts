@@ -1,5 +1,6 @@
-// import  {Courses} from "./interfaces/courses.interdaces" ;
+
 import { Injectable } from '@nestjs/common';
+import { Courses } from './interfaces/courses.interdaces';
 
 @Injectable()
 export class CoursesService {
