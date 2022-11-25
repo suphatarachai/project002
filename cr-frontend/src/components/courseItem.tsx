@@ -1,6 +1,6 @@
 import { type } from 'os';
 import React, { useEffect, useState } from 'react';
-import {Course} from './interfaces'
+import {Course} from '../interfaces'
 
 type CourseItemProps = {
     course: Course,

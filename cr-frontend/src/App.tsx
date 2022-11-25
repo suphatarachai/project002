@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import NewCourseForm from './components/NewCourseForm';
 
 
 import './App.css';
-import CoursesItem from './courseItem';
+import CoursesItem from './components/courseItem';
 import { Course } from './interfaces';
 
 
 const App = () => {
   const [courses, setCourses] = useState<Course[]> ([]);
+  const [formVisibel,setFormVisibel] = useState<boolean>(false);
+ 
+
+
+  const toggleFormVisibel = () => {
+    setFormVisibel (!formVisibel);
+  }
 
 
   useEffect (() => {
@@ -24,7 +32,11 @@ const App = () => {
             {courses.map(item => (
               <CoursesItem key={item.id} course={item}/>
             ))}
-        </ul>
+        </ul> 
+        <button onClick={toggleFormVisibel}>New Course</button>
+        { formVisibel && <NewCourseForm/>
+          
+        }
     </div>
   );
 }
