@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NewCourseForm from './components/NewCourseForm';
 
 
+
 import './App.css';
 import CoursesItem from './components/courseItem';
 import { Course } from './interfaces';
@@ -16,14 +17,21 @@ const App = () => {
   const toggleFormVisibel = () => {
     setFormVisibel (!formVisibel);
   }
-
-
-  useEffect (() => {
+  const fetchCourse = () => {
     fetch('http://localhost:3001/courses')
         .then(res => res.json())
         .then(courses => {
           setCourses(courses);
         });
+  }
+  const handleNewCourseCreateed = (course: Course) => {
+    fetchCourse();
+    setFormVisibel(false);
+  }
+
+
+  useEffect (() => {
+    fetchCourse ()
   },[]);
 
   return (
@@ -34,11 +42,9 @@ const App = () => {
             ))}
         </ul> 
         <button onClick={toggleFormVisibel}>New Course</button>
-        { formVisibel && <NewCourseForm/>
-          
-        }
+        { formVisibel && <NewCourseForm onNewCourseCreated={handleNewCourseCreateed}/>}
     </div>
-  );
+  )
 }
 
 

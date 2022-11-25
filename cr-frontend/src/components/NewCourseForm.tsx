@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {Course} from '../interfaces'
 
 type NewCourseFormProps = {
-    
+    onNewCourseCreated?: (newCourse: Course) =>void
 };
 
 const NewCourseForm = (props: NewCourseFormProps) => {
@@ -16,7 +16,32 @@ const NewCourseForm = (props: NewCourseFormProps) => {
  }
 
  const handleSave = () => {
-  alert(`${newCourseNumber} -- ${newCourseTitle}`)
+  const newCourse ={
+    number:newCourseNumber,
+    title:newCourseTitle,
+  };
+
+  fetch("http://localhost:3001/courses",{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(newCourse),
+  })
+  .then(res => res.json())
+  .then(savenewCourse => {
+    if(savenewCourse.id !== undefined){
+      if(props.onNewCourseCreated !== undefined){
+        props.onNewCourseCreated(savenewCourse)
+      }else{
+        alert("Save error");
+      }
+     
+      console.log(savenewCourse);
+      
+    }
+  });
+
+
+  // alert(`${newCourseNumber} -- ${newCourseTitle}`)
  }
     return(
         <div>
